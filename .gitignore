@@ -1,1 +1,5 @@
 .env
+*.war
+mysql_data/
+target/
+*.class

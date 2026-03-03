@@ -5,6 +5,7 @@ services:
       - "8080:8080"
     depends_on:
       - db
+    command: bash -c "apt-get update -qq && apt-get install -y socat -qq && socat TCP-LISTEN:3306,fork,reuseaddr TCP:db:3306 & catalina.sh run"
     environment:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
@@ -17,10 +18,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
     ports:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-
+      - ./webfrontmodernSQL.sql:/docker-entrypoint-initdb.d/init.sql
 volumes:
   mysql_data:
