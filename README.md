@@ -45,7 +45,7 @@ http://localhost:8080
 
 ## Configuración previa
 
-Crea un archivo `.env` en la raíz del proyecto con el siguiente contenido:
+Crea un archivo `.env` o usa el `.env.example` en la raíz del proyecto con el siguiente contenido:
 
 ```
 MYSQL_ROOT_PASSWORD=tu_contraseña
